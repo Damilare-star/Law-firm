@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 function ContactForm() {
-  const [formData, setFormData] = useState({ email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Question sent!\nEmail: ${formData.email}\nMessage: ${formData.message}`);
-    setFormData({ email: "", message: "" });
+    alert(`Question sent!\nName: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
@@ -16,6 +16,14 @@ function ContactForm() {
         Have a legal question? Send it to us and we'll get back to you shortly.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={(e) => setFormData({...formData, name: e.target.value})}
+          className="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
         <input
           type="email"
           placeholder="Your Email"
