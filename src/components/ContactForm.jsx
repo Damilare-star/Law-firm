@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 function ContactForm() {
-  const [message, setMessage] = useState("");
+  const [formData, setFormData] = useState({ email: "", message: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Question sent: ${message}`);
-    setMessage("");
+    alert(`Question sent!\nEmail: ${formData.email}\nMessage: ${formData.message}`);
+    setFormData({ email: "", message: "" });
   };
 
   return (
@@ -16,10 +16,18 @@ function ContactForm() {
         Have a legal question? Send it to us and we'll get back to you shortly.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <input
+          type="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          className="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
         <textarea
           placeholder="Type your question here..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          value={formData.message}
+          onChange={(e) => setFormData({...formData, message: e.target.value})}
           className="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[150px]"
           required
         />
